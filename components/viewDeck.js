@@ -4,7 +4,7 @@ import {fetchDecks} from '../utils/api'
 
 export default class ViewDeck extends React.Component{
   componentDidMount(){
-      fetchDecks()
+      fetchDecks().then((res)=> console.log(JSON.parse(res)))
   }
   render(){
     return(

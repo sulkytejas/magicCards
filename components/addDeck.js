@@ -23,7 +23,7 @@ export default class AddDeck extends React.Component{
         <Text>Add Deck</Text>
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText = {(text)=> this.setState({text})}
+          onChangeText = {(value)=> this.setState({text: value})}
           editable ={true}
           value = {this.state.text}
         />
