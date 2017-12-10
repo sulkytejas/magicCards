@@ -1,14 +1,26 @@
 import {AsyncStorage} from 'react-native'
 
-const STORAGE_KEY = "MagicCards:cards"
+const FLASHCARDS_STORAGE_KEY = "MagicCards:cards"
 
-export function fetchDecks(){
-  return AsyncStorage.getItem(STORAGE_KEY).then((a)=>{JSON.parse(a)})
-  
+
+export function getDecks() {
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY) .then(results => {
+    let data = JSON.parse(results);
+    if(!data) { return [] }
+    let keys = Object.keys(data);
+    let decks = keys.map(function (item) {
+      let card = data[item];
+      card.title = item;
+      return card;
+
+    });
+
+    return decks;
+  })
+  .catch(error => console.log('getDecks error', error));
 }
 
-export function submitDeck({title}){
-  return AsyncStorage.setItem(STORAGE_KEY,JSON.stringify({
-      [title]:title
-    }))
-}
+export function submitDeck({ key, deck }) {
+  return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({[key]: deck}))
+    .catch(error => console.log('addCardToDeck error', error));
+  }

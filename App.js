@@ -4,6 +4,7 @@ import AddDeck from './components/addDeck';
 import ViewDeck from './components/viewDeck';
 import { TabNavigator,StackNavigator } from 'react-navigation'
 
+
 const Tabs = TabNavigator ({
   Home:{
     screen: ViewDeck,

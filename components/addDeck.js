@@ -7,9 +7,17 @@ export default class AddDeck extends React.Component{
     text: 'Useless Placeholder'
   }
 
+  timeToString= () => {
+  const time = Date.now()
+  const date = new Date(time)
+  const todayUTC = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
+  return todayUTC.toISOString().split('T')[0]
+}
+
   onPressAddDeck =()=>{
+    const key = 1;
     const {text} =  this.state
-    submitDeck({text})
+    submitDeck({key,text})
     alert('done')
   }
 
