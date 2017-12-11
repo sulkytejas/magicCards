@@ -2,24 +2,17 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput,Button,TouchableOpacity } from 'react-native';
 import {submitDeck} from '../utils/api'
 
-function timeToString (){
-const time = Date.now()
-const date = new Date(time)
-const todayUTC = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-return todayUTC.toISOString().split('T')[0]
-}
-
 export default class AddDeck extends React.Component{
   state={
-    text: 'Useless Placeholder'
+    deck: 'Useless Placeholder'
   }
 
-
-
   onPressAddDeck =()=>{
-    const key = timeToString();
-    const {text} =  this.state
-    submitDeck({key,text})
+    const key = '_' + Math.random().toString(36).substr(2, 9);
+
+    const {deck} =  this.state
+    console.log(deck)
+    submitDeck({key,deck})
     alert('done')
   }
 
@@ -33,9 +26,9 @@ export default class AddDeck extends React.Component{
         <Text>Add Deck</Text>
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText = {(value)=> this.setState({text: value})}
+          onChangeText = {(value)=> this.setState({deck: value})}
           editable ={true}
-          value = {this.state.text}
+          value = {this.state.deck}
         />
       <TouchableOpacity onPress={this.onPressAddDeck} >
           <Text>Submit</Text>

@@ -21,6 +21,8 @@ export function getDecks() {
 }
 
 export function submitDeck({ key, deck }) {
+  console.log("key is"+ key);
+  console.log("deck is"+ deck);
   return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({[key]: deck}))
     .catch(error => console.log('addCardToDeck error', error));
   }
