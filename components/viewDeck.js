@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import {getDecks} from '../utils/api'
+import SingleDeck from './singleDeck';
 
 export default class ViewDeck extends React.Component{
   state={
@@ -14,9 +15,17 @@ export default class ViewDeck extends React.Component{
     console.log(decks)
     return(
       <View>
+
+
         <Text>View Deck</Text>
         {decks.map(a=>(
-          <Text key={a.key}>{a}</Text>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate(
+                  'SingleDeck',
+          )}>
+            <Text key={a.key}>{a}</Text>
+          </TouchableOpacity>
+
         ))}
       </View>
     )

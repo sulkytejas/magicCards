@@ -2,11 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import AddDeck from './components/addDeck';
 import ViewDeck from './components/viewDeck';
+import SingleDeck from './components/singleDeck';
 import { TabNavigator,StackNavigator } from 'react-navigation'
 
 
 const Tabs = TabNavigator ({
-  Home:{
+  ViewDeck:{
     screen: ViewDeck,
     navigationOptions:{
       title: 'View Deck'
@@ -20,11 +21,20 @@ const Tabs = TabNavigator ({
   }
 })
 
+const MainNavigator = StackNavigator({
+  Home:{
+    screen:Tabs
+  },
+  SingleDeck:{
+    screen:SingleDeck
+  }
+})
+
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Tabs/>
+        <MainNavigator/>
       </View>
     );
   }
