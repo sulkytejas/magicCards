@@ -22,6 +22,7 @@ export default class ViewDeck extends React.Component{
           <TouchableOpacity
             onPress={() => this.props.navigation.navigate(
                   'SingleDeck',
+                  {'entryID':a.key}
           )}>
             <Text key={a.key}>{a}</Text>
           </TouchableOpacity>

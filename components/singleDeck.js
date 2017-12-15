@@ -9,7 +9,7 @@ export default class SingleDeck extends React.Component{
 
     return(
       <View>
-        <Text>Single Deck</Text>
+        <Text>Single Deck - {this.props.navigation.state.params.entryID}</Text>
       </View>
     )
   }

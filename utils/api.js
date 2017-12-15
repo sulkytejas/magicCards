@@ -4,6 +4,7 @@ const FLASHCARDS_STORAGE_KEY = "MagicCards:cards"
 
 
 export function getDecks() {
+  clear()
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY) .then(results => {
     let data = JSON.parse(results);
     if(!data) { return [] }
@@ -11,6 +12,8 @@ export function getDecks() {
     let decks = keys.map(function (item) {
       let card = data[item];
       card.title = item;
+
+      console.log(card)
       return card;
 
     });
@@ -23,6 +26,11 @@ export function getDecks() {
 export function submitDeck({ key, deck }) {
   console.log("key is"+ key);
   console.log("deck is"+ deck);
-  return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({[key]: deck}))
+  return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
+    [key]: {
+      'title':...deck,
+      'id':...key
+    }
+  }))
     .catch(error => console.log('addCardToDeck error', error));
   }
