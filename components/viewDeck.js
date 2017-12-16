@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
-import {getDecks} from '../utils/api'
+import {addCardToDeck} from '../utils/api'
 import SingleDeck from './singleDeck';
 
 export default class ViewDeck extends React.Component{
@@ -8,7 +8,8 @@ export default class ViewDeck extends React.Component{
     decks:[]
   }
   componentDidMount(){
-      getDecks().then(a => this.setState({decks:a}))
+      addCardToDeck().then(data=>{})
+      
   }
   render(){
     const {decks} =this.state
