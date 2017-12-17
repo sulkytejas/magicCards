@@ -28,6 +28,7 @@ export function addCardToDeck()
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
     .then(results => {
       let data = JSON.parse(results);
+      if (!data) {return []}
       let keys = Object.keys(data);
       console.log(data)
       return data;
@@ -39,7 +40,7 @@ export function addCardToDeck()
    .catch(error => console.log('addCardToDeck error', error));
 }
 
-export function submitDeck({ key,deck }) {
+export function submitDeck({ key,deck=[] }) {
   return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
     [key]:deck
   }))

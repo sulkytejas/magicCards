@@ -5,12 +5,11 @@ import SingleDeck from './singleDeck';
 
 export default class ViewDeck extends React.Component{
   state={
-    decks:{}
+    decks:[]
   }
   componentDidMount(){
-      addCardToDeck().then(data=>(this.setState({decks:data})
-         )
-      )
+      addCardToDeck().then(data=>this.setState({decks:data}))
+
 
   }
   render(){
