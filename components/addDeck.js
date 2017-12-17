@@ -4,17 +4,18 @@ import {submitDeck} from '../utils/api'
 
 export default class AddDeck extends React.Component{
   state={
-    deck: 'Useless Placeholder'
+    title: 'Useless Placeholder'
   }
 
   onPressAddDeck =()=>{
-    const key = '_' + Math.random().toString(36).substr(2, 9);
-
-    const {deck} =  this.state
-    console.log(deck)
+    const {title} = this.state
+    const key = title;
+    const deck = {
+      title: title,
+      questions: []
+    };
     submitDeck({key,deck})
-    alert('done')
-  }
+    alert('done') }
 
   render(){
     return(
@@ -28,7 +29,7 @@ export default class AddDeck extends React.Component{
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
           onChangeText = {(value)=> this.setState({deck: value})}
           editable ={true}
-          value = {this.state.deck}
+          value = {this.state.title}
         />
       <TouchableOpacity onPress={this.onPressAddDeck} >
           <Text>Submit</Text>

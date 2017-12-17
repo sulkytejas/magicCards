@@ -5,19 +5,19 @@ import SingleDeck from './singleDeck';
 
 export default class ViewDeck extends React.Component{
   state={
-    decks:[]
+    decks:{}
   }
   componentDidMount(){
-      addCardToDeck().then(data=>{})
-      
+      addCardToDeck().then(data=>(this.setState({decks:data})
+         )
+      )
+
   }
   render(){
     const {decks} =this.state
     console.log(decks)
     return(
       <View>
-
-
         <Text>View Deck</Text>
         {decks.map(a=>(
           <TouchableOpacity
