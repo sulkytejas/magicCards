@@ -10,7 +10,8 @@ export default class AddDeck extends React.Component{
   onPressAddDeck =()=>{
     const {title} = this.state
     const key = title;
-     const deck = {
+    const deck = []
+    deck = {
       title: title,
       questions: []
     };
