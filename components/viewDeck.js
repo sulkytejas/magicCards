@@ -20,11 +20,12 @@ export default class ViewDeck extends React.Component{
         <Text>View Deck</Text>
         {decks.map(a=>(
           <TouchableOpacity
+            key = {a.title}
             onPress={() => this.props.navigation.navigate(
                   'SingleDeck',
-                  {'entryID':a.key}
+                  {'entryID':a.title}
           )}>
-            <Text key={a.key}>{a}</Text>
+            <Text >{a.title}</Text>
           </TouchableOpacity>
 
         ))}
