@@ -9,9 +9,8 @@ export default class ViewDeck extends React.Component{
   }
   componentDidMount(){
       getDecks().then(data=>this.setState({decks:data}))
-
-
   }
+
   render(){
     const {decks} =this.state
     console.log(decks)

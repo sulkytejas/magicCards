@@ -3,6 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import AddDeck from './components/addDeck';
 import ViewDeck from './components/viewDeck';
 import SingleDeck from './components/singleDeck';
+import ViewCards from './components/viewCards'
+import AddNewCard from './components/addNewCard'
+
 import { TabNavigator,StackNavigator } from 'react-navigation'
 
 
@@ -27,6 +30,12 @@ const MainNavigator = StackNavigator({
   },
   SingleDeck:{
     screen:SingleDeck
+  },
+  ViewCards:{
+    screen:ViewCards
+  },
+  AddNewCard:{
+    screen:AddNewCard
   }
 })
 
