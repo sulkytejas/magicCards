@@ -33,3 +33,12 @@ export function submitDeck({ key,deck }) {
   }))
     .catch(error => console.log('addCardToDeck error', error));
   }
+
+export function addCardToDeck({ key, card }) {
+  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+  .then(results => { let data = JSON.parse(results);
+    let questions = [...data[key].questions, card]
+    data[key]['questions'] = questions;
+    return AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(data));
+  })
+ .catch(error => console.log('addCardToDeck error', error)); }

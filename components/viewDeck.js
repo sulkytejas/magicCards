@@ -5,9 +5,11 @@ import SingleDeck from './singleDeck';
 
 export default class ViewDeck extends React.Component{
   state={
-    decks:[]
+    decks:[],
+    refreshing: false,
   }
   componentDidMount(){
+      this.setState({refreshing: true});
       getDecks().then(data=>this.setState({decks:data}))
   }
 

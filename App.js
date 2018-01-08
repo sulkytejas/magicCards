@@ -36,6 +36,9 @@ const MainNavigator = StackNavigator({
   },
   AddNewCard:{
     screen:AddNewCard
+  },
+  ViewDeck:{
+    screen:ViewDeck
   }
 })
 
