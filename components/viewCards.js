@@ -1,14 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
+import {getCards} from '../utils/api'
 
 export default class ViewCards extends React.Component{
-  state={ }
+  state={
+    cards:[]
+   }
+
+  componentDidMount(){
+      this.setState({refreshing: true});
+      let key = this.props.navigation.state.params.entryTitle
+      getCards({key}).then(data=>this.setState({cards:data}))
+
+  }
 
   render(){
-
+  console.log("state"+this.state.cards)
     return(
       <View>
-        <Text>View Cards</Text>
+        <Text>View Cards{this.state.cards}</Text>
+        {this.state.cards.map(result =>{
+          <Text>{result}</Text>
+        })}
       </View>
     )
   }

@@ -7,14 +7,18 @@ export default class SingleDeck extends React.Component{
   state={ }
 
   render(){
-
+   const entryTitle = this.props.navigation.state.params.entryID
     return(
       <View>
-        <Text>Single Deck - {this.props.navigation.state.params.entryID}</Text>
-        <TouchableOpacity   onPress={() => this.props.navigation.navigate('AddNewCard',)}>
+        <Text>Single Deck - { entryTitle }</Text>
+        <TouchableOpacity   onPress={() => this.props.navigation.navigate('AddNewCard',
+        {'entryTitle':entryTitle}
+      )}>
           <Text>Add New Card</Text>
         </TouchableOpacity>
-        <TouchableOpacity   onPress={() => this.props.navigation.navigate('ViewCards',)}>
+        <TouchableOpacity   onPress={() => this.props.navigation.navigate('ViewCards',
+        {'entryTitle':entryTitle}
+      )}>
           <Text>View Cards</Text>
         </TouchableOpacity>
       </View>
