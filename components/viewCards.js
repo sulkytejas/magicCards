@@ -11,7 +11,7 @@ export default class ViewCards extends React.Component{
   componentDidMount(){
       this.setState({refreshing: true});
       let key = this.props.navigation.state.params.entryTitle
-      getCards({key}).then(data=> data.map(card=> console.log(card)))
+      getCards({key}).then(data=> this.setState({cards:data}))
 }
 
   render(){
