@@ -2,6 +2,7 @@ import {AsyncStorage} from 'react-native'
 
 const FLASHCARDS_STORAGE_KEY = "MagicCards:cards"
 
+
 export function getDecks()
 {
   return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)

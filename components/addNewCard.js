@@ -5,11 +5,16 @@ import {addCardToDeck} from '../utils/api'
 export default class AddNewCard extends React.Component{
   state={
     question:'',
+    answer:''
    }
 
   onPressAddCard = () =>{
     const key = this.props.navigation.state.params.entryTitle
-    const card = this.state.question
+    const question = this.state.question
+    const answer = this.state.answer
+    const card = {
+      question,answer
+    }
     addCardToDeck({ key, card })
   }
 
@@ -26,6 +31,13 @@ export default class AddNewCard extends React.Component{
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
           onChangeText = {(value)=> this.setState({question: value})}
+          editable ={true}
+          value = {this.state.title}
+        />
+        <Text>answer is</Text>
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText = {(value)=> this.setState({answer: value})}
           editable ={true}
           value = {this.state.title}
         />
