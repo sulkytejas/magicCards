@@ -15,10 +15,29 @@ export default class ViewCards extends React.Component{
 }
 
   render(){
-  console.log("state"+this.state.cards)
+    let {cards} = this.state
     return(
       <View>
-        <Text>View Cards{this.state.cards}</Text>
+        {cards.map((result,index)=>(
+          <View key={index}>
+            <Text>
+               QUESTION: {result.question}
+            </Text>
+            <Text>
+               Answer: {result.answer}
+            </Text>
+            <TouchableOpacity >
+                <Text>Correct</Text>
+            </TouchableOpacity>
+            <TouchableOpacity >
+                <Text>Wrong</Text>
+            </TouchableOpacity>
+          </View>
+
+        ))}
+
+
+
       </View>
     )
   }
