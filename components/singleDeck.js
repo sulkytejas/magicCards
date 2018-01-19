@@ -8,9 +8,10 @@ export default class SingleDeck extends React.Component{
 
   render(){
    const entryTitle = this.props.navigation.state.params.entryID
+   const count = this.props.navigation.state.params.countNo
     return(
       <View>
-        <Text>Single Deck - { entryTitle }</Text>
+        <Text>Single Deck - { entryTitle }- {count}</Text>
         <TouchableOpacity   onPress={() => this.props.navigation.navigate('AddNewCard',
         {'entryTitle':entryTitle}
       )}>

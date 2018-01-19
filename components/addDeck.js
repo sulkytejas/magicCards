@@ -15,7 +15,7 @@ export default class AddDeck extends React.Component{
       questions: []
     };
     submitDeck({key,deck})
-    this.props.navigation.navigate('ViewDeck')
+    this.props.navigation.navigate('ViewDeck', {deck: title})
   }
 
   render(){
