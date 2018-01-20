@@ -37,9 +37,9 @@ const MainNavigator = StackNavigator({
   AddNewCard:{
     screen:AddNewCard
   },
-  ViewDeck:{
+  DeckHome:{
     screen:ViewDeck
-  }
+  },
 })
 
 export default class App extends React.Component {
