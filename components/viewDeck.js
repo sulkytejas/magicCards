@@ -1,12 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
-import {getDecks} from '../utils/api'
+import {getDecks,getCards} from '../utils/api'
 import SingleDeck from './singleDeck';
 
 export default class ViewDeck extends React.Component{
   state={
     decks:[],
     refreshing: false,
+    card:''
   }
   componentDidMount(){
       this.setState({refreshing: true});
@@ -24,9 +25,11 @@ export default class ViewDeck extends React.Component{
             key = {a.title}
             onPress={() => this.props.navigation.navigate(
                   'SingleDeck',
-                  {'entryID':a.title}
+                  {'entryID':a.title, 'countNo':a.count}
+
           )}>
-            <Text >{a.title}</Text>
+            <Text>{a.title} - {a.count} </Text>
+
           </TouchableOpacity>
 
         ))}

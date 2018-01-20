@@ -16,6 +16,7 @@ export default class AddNewCard extends React.Component{
       question,answer
     }
     addCardToDeck({ key, card })
+    
   }
 
   render(){

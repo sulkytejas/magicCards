@@ -11,9 +11,13 @@ export function getDecks()
       let data = JSON.parse(results);
       if (!data) {return []}
       let keys = Object.keys(data);
+
+
+
       let decks = keys.map(function (item) {
         let deck = data[item];
-        console.log('the deck is'+deck)
+        let count = (deck.questions.length)
+        deck.count =  count
         deck.title = item;
         return deck;
        });
@@ -29,6 +33,7 @@ export function getCards({key}){
         if (!results) {return []}
         let data = JSON.parse(results);
         let questions = [...data[key].questions]
+      
         return questions
   })
 }

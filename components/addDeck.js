@@ -15,7 +15,7 @@ export default class AddDeck extends React.Component{
       questions: []
     };
     submitDeck({key,deck})
-    this.props.navigation.navigate('ViewDeck')
+    this.props.navigation.navigate('Home', {deck: title})
   }
 
   render(){
@@ -32,7 +32,7 @@ export default class AddDeck extends React.Component{
           editable ={true}
           value = {this.state.title}
         />
-      <TouchableOpacity onPress={this.onPressAddDeck} >
+      <TouchableOpacity onPress={()=> (this.onPressAddDeck())} >
           <Text>Submit</Text>
       </TouchableOpacity>
       </View>

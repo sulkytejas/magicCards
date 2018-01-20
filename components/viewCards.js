@@ -4,13 +4,13 @@ import {getCards} from '../utils/api'
 
 export default class ViewCards extends React.Component{
   state={
-    cards:[],
-
-   }
+     cards:[]
+    }
 
   componentDidMount(){
       this.setState({refreshing: true});
       let key = this.props.navigation.state.params.entryTitle
+      // getCards({key}).then(data=> console.log(data))
       getCards({key}).then(data=> this.setState({cards:data}))
 }
 
@@ -18,6 +18,7 @@ export default class ViewCards extends React.Component{
     let {cards} = this.state
     return(
       <View>
+
         {cards.map((result,index)=>(
           <View key={index}>
             <Text>
@@ -35,6 +36,7 @@ export default class ViewCards extends React.Component{
           </View>
 
         ))}
+
 
 
 
