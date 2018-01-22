@@ -50,7 +50,7 @@ export default class AddDeck extends React.Component{
               />
 
             </Item>
-              <Button rounded success onPress={()=> (this.onPressAddDeck())}>
+              <Button full danger onPress={()=> (this.onPressAddDeck())}>
                 <Text> Submit</Text>
               </Button>
           </Form>

@@ -1,35 +1,58 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View,StatusBar } from 'react-native';
 import AddDeck from './components/addDeck';
 import ViewDeck from './components/viewDeck';
 import SingleDeck from './components/singleDeck';
 import ViewCards from './components/viewCards'
 import AddNewCard from './components/addNewCard'
-
+import { FontAwesome, Ionicons } from '@expo/vector-icons'
+import { Constants } from 'expo'
 import { TabNavigator,StackNavigator } from 'react-navigation'
 
-// async componentWillMount() {
-//   await Expo.Font.loadAsync({
-//     'Roboto': require('native-base/Fonts/Roboto.ttf'),
-//     'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
-//   });
-// }
-
+function MagicStatusBar({backgroundColor, ...props}){
+  return (
+    <View style={{backgroundColor, height:Constants.statusBarHeight}}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props}/>
+    </View>
+  )
+}
 
 const Tabs = TabNavigator ({
   ViewDeck:{
     screen: ViewDeck,
     navigationOptions:{
-      title: 'View Deck'
+      title: 'View Decks',
+      tabBarIcon:() => <Ionicons name='md-list' size={30}  color='#fff'/>
     }
   },
   AddDeck:{
     screen:AddDeck,
     navigationOptions:{
-      title: 'Add Deck'
+      title: 'Add Deck',
+      tabBarIcon:() => <Ionicons name='ios-add-circle' size={30}  color='#fff'/>
     }
   }
-})
+},
+{
+  navigationOptions: {
+    header: null
+  },
+  tabBarOptions: {
+    activeTintColor:  '#fff',
+    style: {
+      height: 56,
+      backgroundColor:  '#089960',
+      shadowColor: 'rgba(0, 0, 0, 0.24)',
+      shadowOffset: {
+        width: 0,
+        height: 3
+      },
+      shadowRadius: 6,
+      shadowOpacity: 1,
+    }
+  }
+}
+)
 
 const MainNavigator = StackNavigator({
   Home:{
@@ -53,6 +76,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <MagicStatusBar backgroundColor='#089960' barStyle='light-content'/>
         <MainNavigator/>
       </View>
     );
@@ -62,6 +86,5 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#B4FDE0'
   },
 });
