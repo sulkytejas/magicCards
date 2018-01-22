@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet,TouchableOpacity } from 'react-native';
 import { Container, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon,Button } from 'native-base';
 import {getCards} from '../utils/api'
+import FlipCard from 'react-native-flip-card'
 
 export default class ViewCards extends React.Component{
   state={
@@ -21,12 +22,14 @@ export default class ViewCards extends React.Component{
     this.setState((state)=>{
       return {incrementCounter: state.incrementCounter + 1, totalCount:state.totalCount + 1}
     })
+    this._deckSwiper._root.swipeLeft()
   }
 
   Decrement = (state) => {
     this.setState((state)=>{
       return {decrementCounter: state.decrementCounter + 1, totalCount:state.totalCount + 1}
     })
+    this._deckSwiper._root.swipeLeft()
   }
 
 
@@ -62,11 +65,13 @@ export default class ViewCards extends React.Component{
         <Container>
           <View>
             <DeckSwiper
+
               ref={(c) => this._deckSwiper = c}
               dataSource={this.state.cards}
+              looping = {false}
               renderEmpty={() =>
                 <View style={{ alignSelf: "center" }}>
-                  <Text>{this.state.totalCount}</Text>
+                  <Text>Correct Answers: {((this.state.incrementCounter)/this.state.totalCount)*100}</Text>
                 </View>
               }
               renderItem={ item =>
@@ -74,16 +79,29 @@ export default class ViewCards extends React.Component{
                   <CardItem>
                     <Left>
                       <Body>
-                        <Text>{item.question}</Text>
-                        <Text note>NativeBase</Text>
+                        <FlipCard
+                          friction={6}
+                          perspective={1000}
+                          flipHorizontal={true}
+                          flipVertical={false}
+                          flip={false}
+                          clickable={true}
+                          onFlipEnd={(isFlipEnd)=>{console.log('isFlipEnd', isFlipEnd)}}
+                        >
+                          {/* Face Side */}
+                          <View >
+                              <Text style={{ alignSelf: "center" }}>{item.question}</Text>
+                              <Text style={{ alignSelf: "center" }}>(Click here for answer)</Text>
+                          </View>
+                          {/* Back Side */}
+                          <View >
+                            <Text>{item.answer}</Text>
+                          </View>
+                        </FlipCard>
                         <Button success full onPress={this.Increment} style={{margin:20}}><Text>Correct</Text></Button>
                         <Button danger full onPress={this.Decrement} style={{margin:20}}><Text>Incorrect</Text></Button>
                       </Body>
                     </Left>
-                  </CardItem>
-                  <CardItem>
-                    <Icon name="heart" style={{ color: '#ED4A6A' }} />
-                    <Text>{item.answer}</Text>
                   </CardItem>
                 </Card>
               }
