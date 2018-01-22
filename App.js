@@ -8,6 +8,13 @@ import AddNewCard from './components/addNewCard'
 
 import { TabNavigator,StackNavigator } from 'react-navigation'
 
+// async componentWillMount() {
+//   await Expo.Font.loadAsync({
+//     'Roboto': require('native-base/Fonts/Roboto.ttf'),
+//     'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+//   });
+// }
+
 
 const Tabs = TabNavigator ({
   ViewDeck:{
@@ -55,5 +62,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:'#B4FDE0'
   },
 });
