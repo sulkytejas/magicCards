@@ -5,7 +5,10 @@ import {getCards} from '../utils/api'
 
 export default class ViewCards extends React.Component{
   state={
-     cards:[]
+     cards:[],
+     incrementCounter:0,
+     decrementCounter:0,
+     totalCount:0,
     }
 
   componentDidMount(){
@@ -14,6 +17,19 @@ export default class ViewCards extends React.Component{
       // getCards({key}).then(data=> console.log(data))
       getCards({key}).then(data=> this.setState({cards:data}))
 }
+
+  Increment = (state) => {
+    this.setState((state)=>{
+      return {incrementCounter: state.incrementCounter + 1, totalCount:state.totalCount + 1}
+    })
+  }
+
+  Decrement = (state) => {
+    this.setState((state)=>{
+      return {decrementCounter: state.decrementCounter + 1, totalCount:state.totalCount + 1}
+    })
+  }
+
 
   render(){
     let {cards} = this.state
@@ -48,7 +64,7 @@ export default class ViewCards extends React.Component{
             dataSource={this.state.cards}
             renderEmpty={() =>
               <View style={{ alignSelf: "center" }}>
-                <Text>Over</Text>
+                <Text>{this.state.totalCount}</Text>
               </View>
             }
             renderItem={ item =>
@@ -58,6 +74,8 @@ export default class ViewCards extends React.Component{
                     <Body>
                       <Text>{item.question}</Text>
                       <Text note>NativeBase</Text>
+                      <Button success full onPress={this.Increment} style={{margin:20}}><Text>Correct</Text></Button>
+                      <Button danger full onPress={this.Decrement} style={{margin:20}}><Text>Incorrect</Text></Button>
                     </Body>
                   </Left>
                 </CardItem>

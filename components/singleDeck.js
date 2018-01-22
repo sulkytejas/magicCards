@@ -28,14 +28,14 @@ export default class SingleDeck extends React.Component{
       <Container>
 
           <Text>{ entryTitle } ({count} cards)</Text>
-          <Button full success
+          <Button style={{margin:20}} full success
             onPress={() => this.props.navigation.navigate('AddNewCard',
             {'entryTitle':entryTitle}
           )}
             >
             <Text>New Cards</Text>
           </Button>
-          <Button full danger
+          <Button style={{margin:20}} full danger
             onPress={() => this.props.navigation.navigate('ViewCards',
             {'entryTitle':entryTitle}
             )}
@@ -46,3 +46,10 @@ export default class SingleDeck extends React.Component{
     )
   }
 }
+
+const styles = StyleSheet.create({
+  button:{
+    paddingTop:20,
+    paddingBottom:20,
+  }
+})

@@ -56,19 +56,49 @@ const Tabs = TabNavigator ({
 
 const MainNavigator = StackNavigator({
   Home:{
-    screen:Tabs
+    screen:Tabs,
+    navigationOptions:{
+      headerTintColor:'#fff',
+      headerStyle:{
+        backgroundColor:'#089960'
+      }
+    }
   },
   SingleDeck:{
-    screen:SingleDeck
+    screen:SingleDeck,
+    navigationOptions:{
+      headerTintColor:'#fff',
+      headerStyle:{
+        backgroundColor:'#089960'
+      }
+    }
   },
   ViewCards:{
-    screen:ViewCards
+    screen:ViewCards,
+    navigationOptions:{
+      headerTintColor:'#fff',
+      headerStyle:{
+        backgroundColor:'#089960'
+      }
+    }
   },
   AddNewCard:{
-    screen:AddNewCard
+    screen:AddNewCard,
+    navigationOptions:{
+      headerTintColor:'#fff',
+      headerStyle:{
+        backgroundColor:'#089960'
+      }
+    }
   },
   DeckHome:{
-    screen:ViewDeck
+    screen:ViewDeck,
+    navigationOptions:{
+      headerTintColor:'#fff',
+      headerStyle:{
+        backgroundColor:'#089960'
+      }
+    }
   },
 })
 
