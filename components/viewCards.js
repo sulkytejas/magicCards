@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet,TouchableOpacity } from 'react-native';
-import { Container, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon,Button } from 'native-base';
+import { Container, Header, View, DeckSwiper, Card, CardItem, Thumbnail, Text, Left, Body, Icon,Button,Spinner,Content } from 'native-base';
 import {getCards} from '../utils/api'
 import FlipCard from 'react-native-flip-card'
 
@@ -13,10 +13,13 @@ export default class ViewCards extends React.Component{
     }
 
   componentDidMount(){
-      this.setState({refreshing: true});
       let key = this.props.navigation.state.params.entryTitle
       getCards({key}).then(data=> this.setState({cards:data}))
 }
+
+  handleClick(key){
+      return getCards({key}).then(data=> this.setState({cards:data}))
+  }
 
   Increment = (state) => {
     this.setState((state)=>{
@@ -35,6 +38,7 @@ export default class ViewCards extends React.Component{
 
   render(){
     let {cards} = this.state
+    let key = this.props.navigation.state.params.entryTitle
     console.log(cards.length)
     if (cards.length > 0) {
       return(
@@ -65,13 +69,14 @@ export default class ViewCards extends React.Component{
         <Container>
           <View>
             <DeckSwiper
-
               ref={(c) => this._deckSwiper = c}
               dataSource={this.state.cards}
               looping = {false}
               renderEmpty={() =>
                 <View style={{ alignSelf: "center" }}>
                   <Text>Correct Answers: {((this.state.incrementCounter)/this.state.totalCount)*100}</Text>
+                  <Button success full  style={{margin:20}} onPress={()=>this.handleClick(key)}><Text>Restart</Text></Button>
+                  <Button danger full onPress={() => this.props.navigation.goBack(null)} style={{margin:20}}><Text>Back</Text></Button>
                 </View>
               }
               renderItem={ item =>
@@ -122,7 +127,10 @@ export default class ViewCards extends React.Component{
     } else {
       return (
         <View>
-          <Text> Cards are loading </Text>
+        <Container>
+            <Spinner color='red' />
+            <Text style={{ alignSelf: "center" }}>No Cards</Text>
+        </Container>
         </View>
       )
     }
