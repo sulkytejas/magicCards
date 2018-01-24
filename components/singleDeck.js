@@ -27,7 +27,7 @@ export default class SingleDeck extends React.Component{
 
       <Container>
 
-          <Text>{ entryTitle } ({count} cards)</Text>
+          <Text style={{alignSelf:'center',fontSize:'25',color:'#996300',marginTop:20}} >{ entryTitle } ({count} cards)</Text>
           <Button style={{margin:20}} full success
             onPress={() => this.props.navigation.navigate('AddNewCard',
             {'entryTitle':entryTitle}
