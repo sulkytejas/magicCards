@@ -38,14 +38,13 @@ export default class ViewDeck extends React.Component{
       <Container>
         <Content>
           {decks.map(a=>(
-            <List >
-              <ListItem key={a.title} onPress={() => this.props.navigation.navigate(
+            <List key={a.title}>
+              <ListItem  onPress={() => this.props.navigation.navigate(
                          'SingleDeck',
                          {'entryID':a.title, 'countNo':a.count})}>
 
                      <Text style={{color:'#996300'}}>
                          {a.title}
-
                      </Text>
                      <Text>({a.count} cards)</Text>
               </ListItem>

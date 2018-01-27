@@ -27,20 +27,20 @@ export default class SingleDeck extends React.Component{
 
       <Container>
 
-          <Text style={{alignSelf:'center',fontSize:'25',color:'#996300',marginTop:20}} >{ entryTitle } ({count} cards)</Text>
+          <Text style={{alignSelf:'center',color:'#996300',marginTop:20}} >{ entryTitle } ({count} cards)</Text>
           <Button style={{margin:20}} full success
             onPress={() => this.props.navigation.navigate('AddNewCard',
             {'entryTitle':entryTitle}
           )}
             >
-            <Text>New Cards</Text>
+            <Text>Add New Card</Text>
           </Button>
           <Button style={{margin:20}} full danger
             onPress={() => this.props.navigation.navigate('ViewCards',
             {'entryTitle':entryTitle}
             )}
             >
-           <Text>View Cards</Text>
+           <Text>Start Quiz</Text>
          </Button>
       </Container>
     )
