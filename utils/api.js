@@ -33,7 +33,7 @@ export function getCards({key}){
         if (!results) {return []}
         let data = JSON.parse(results);
         let questions = [...data[key].questions]
-      
+
         return questions
   })
 }

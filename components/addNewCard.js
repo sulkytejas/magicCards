@@ -17,7 +17,7 @@ export default class AddNewCard extends React.Component{
       question,answer
     }
     addCardToDeck({ key, card })
-
+    this.props.navigation.navigate('SingleDeck',{entryID:key})
   }
 
   render(){
