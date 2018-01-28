@@ -9,6 +9,10 @@ export default class AddNewCard extends React.Component{
     answer:''
    }
 
+   static navigationOptions = ({ navigation }) => ({
+     title: navigation.state.params.entryTitle,
+   });
+
   onPressAddCard = () =>{
     const key = this.props.navigation.state.params.entryTitle
     const question = this.state.question
@@ -50,7 +54,6 @@ export default class AddNewCard extends React.Component{
 
       <Container>
         <Content>
-          <Text>{this.props.navigation.state.params.entryTitle}</Text>
           <Form>
             <Item floatingLabel >
               <Label>Question</Label>

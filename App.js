@@ -1,13 +1,60 @@
 import React from 'react';
-import { StyleSheet, Text, View,StatusBar } from 'react-native';
+import { StyleSheet, Text, View,StatusBar, AsyncStorage } from 'react-native';
 import AddDeck from './components/addDeck';
 import ViewDeck from './components/viewDeck';
 import SingleDeck from './components/singleDeck';
 import ViewCards from './components/viewCards'
 import AddNewCard from './components/addNewCard'
 import { FontAwesome, Ionicons } from '@expo/vector-icons'
-import { Constants } from 'expo'
+import { Constants, Notifications, Permissions } from 'expo'
 import { TabNavigator,StackNavigator } from 'react-navigation'
+
+const NOTIFICATION_KEY = "magicCards:Notification"
+
+export function clearLocalNotification () {
+  return AsyncStorage.removeItem(NOTIFICATION_KEY)
+    .then(Notifications.cancelAllScheduledNotificationsAsync)
+}
+
+function createNotification () {
+  return {
+    title: 'Forgot to play your cards!',
+    body: "👋 don't forget to get quizzy today!",
+    ios: {
+      sound: true,
+    },
+  }
+}
+
+export function setLocalNotification () {
+  AsyncStorage.getItem(NOTIFICATION_KEY)
+    .then(JSON.parse)
+    .then((data) => {
+      if (data === null) {
+        Permissions.askAsync(Permissions.NOTIFICATIONS)
+          .then(({ status }) => {
+            if (status === 'granted') {
+              Notifications.cancelAllScheduledNotificationsAsync()
+
+              let tomorrow = new Date()
+              tomorrow.setDate(tomorrow.getDate() + 1)
+              tomorrow.setHours(20)
+              tomorrow.setMinutes(0)
+
+              Notifications.scheduleLocalNotificationAsync(
+                createNotification(),
+                {
+                  time: tomorrow,
+                  repeat: 'day',
+                }
+              )
+
+              AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
+            }
+          })
+      }
+    })
+}
 
 function MagicStatusBar({backgroundColor, ...props}){
   return (
@@ -67,6 +114,7 @@ const MainNavigator = StackNavigator({
   SingleDeck:{
     screen:SingleDeck,
     navigationOptions:{
+      title:"Deck",
       headerTintColor:'#fff',
       headerStyle:{
         backgroundColor:'#089960'
@@ -103,6 +151,9 @@ const MainNavigator = StackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount(){
+    setLocalNotification()
+  }
   render() {
     return (
       <View style={styles.container}>

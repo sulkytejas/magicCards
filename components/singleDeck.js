@@ -3,9 +3,27 @@ import { StyleSheet, Text, View,TouchableOpacity } from 'react-native';
 import { Container, Header, Left, Body, Right, Button, Icon, Title } from 'native-base';
 import AddNewCard from './addNewCard'
 import ViewCards from './viewCards'
+import {setLocalNotification,clearLocalNotification} from '../App'
 
 export default class SingleDeck extends React.Component{
   state={ }
+
+    // static navigationOptions = ({navigation}) => {
+    //   const entryTitle = .navigation.state.params.entryID
+    //
+    //   return{
+    //     title: "entryTitle",
+    //   }
+    // // }
+
+    ViewCards(){
+      const entryTitle = this.props.navigation.state.params.entryID
+      this.props.navigation.navigate('ViewCards',
+      {'entryTitle':entryTitle})
+
+      clearLocalNotification()
+        .then(setLocalNotification)
+    }
 
   render(){
    const entryTitle = this.props.navigation.state.params.entryID
@@ -36,9 +54,8 @@ export default class SingleDeck extends React.Component{
             <Text>Add New Card</Text>
           </Button>
           <Button style={{margin:20}} full danger
-            onPress={() => this.props.navigation.navigate('ViewCards',
-            {'entryTitle':entryTitle}
-            )}
+            onPress={() => this.ViewCards()
+            }
             >
            <Text>Start Quiz</Text>
          </Button>

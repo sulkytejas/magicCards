@@ -12,14 +12,22 @@ export default class ViewCards extends React.Component{
      totalCount:0,
     }
 
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.state.params.entryTitle,
+  });
+
   componentDidMount(){
       let key = this.props.navigation.state.params.entryTitle
       getCards({key}).then(data=> this.setState({cards:data}))
-}
+    }
 
   handleClick(){
     let key = this.props.navigation.state.params.entryTitle
       this.props.navigation.navigate('ViewCards',{entryTitle:key})
+  }
+  goBack(){
+    let key = this.props.navigation.state.params.entryTitle
+      this.props.navigation.navigate('SingleDeck',{entryID:key})
   }
 
   Increment = (state) => {
@@ -75,9 +83,9 @@ export default class ViewCards extends React.Component{
               looping = {false}
               renderEmpty={() =>
                 <View style={{ alignSelf: "center" }}>
-                  <Text style={{alignSelf:'center',fontSize:'25',color:'#996300',marginTop:20}}>Correct Answers: {((this.state.incrementCounter)/this.state.totalCount)*100}% </Text>
+                  <Text style={{alignSelf:'center',color:'#996300',marginTop:20}}>Correct Answers: {((this.state.incrementCounter)/this.state.totalCount)*100}% </Text>
                   <Button success full  style={{margin:20}} onPress={()=>this.handleClick()  }><Text>Restart</Text></Button>
-                  <Button danger full onPress={() => this.props.navigation.goBack(null)} style={{margin:20}}><Text>Back</Text></Button>
+                  <Button danger full onPress={() => this.goBack()} style={{margin:20}}><Text>Back</Text></Button>
                 </View>
               }
               renderItem={ item =>
