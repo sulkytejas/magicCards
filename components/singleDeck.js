@@ -16,7 +16,7 @@ export default class SingleDeck extends React.Component{
     //   }
     // // }
 
-    ViewCards(){
+    ViewCards({}){
       const entryTitle = this.props.navigation.state.params.entryID
       this.props.navigation.navigate('ViewCards',
       {'entryTitle':entryTitle})
@@ -45,7 +45,7 @@ export default class SingleDeck extends React.Component{
 
       <Container>
 
-          <Text style={{alignSelf:'center',color:'#996300',marginTop:20}} >{ entryTitle } ({count} cards)</Text>
+          <Text style={{alignSelf:'center',color:'#996300',marginTop:20}} >{ entryTitle }</Text>
           <Button style={{margin:20}} full success
             onPress={() => this.props.navigation.navigate('AddNewCard',
             {'entryTitle':entryTitle}
