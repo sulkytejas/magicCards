@@ -12,14 +12,14 @@ export default class ViewCards extends React.Component{
      totalCount:0,
     }
 
-  static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.entryTitle,
-  });
+    // static navigationOptions = ({ navigation }) => ({
+    //   title: navigation.state.params.entryTitle,
+    // });
 
   componentDidMount(){
       let key = this.props.navigation.state.params.entryTitle
       getCards({key}).then(data=> this.setState({cards:data}))
-    }
+}
 
   handleClick(){
     let key = this.props.navigation.state.params.entryTitle

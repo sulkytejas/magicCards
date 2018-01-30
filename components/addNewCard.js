@@ -15,13 +15,16 @@ export default class AddNewCard extends React.Component{
 
   onPressAddCard = () =>{
     const key = this.props.navigation.state.params.entryTitle
+    const count = this.props.navigation.state.params.countNo
+    console.log("the count is" + count)
     const question = this.state.question
     const answer = this.state.answer
     const card = {
       question,answer
     }
     addCardToDeck({ key, card })
-    this.props.navigation.navigate('SingleDeck',{entryID:key})
+    //this.props.navigation.goBack()
+    this.props.navigation.navigate('SingleDeck',{entryID:key,'countNo':count+1})
   }
 
   render(){

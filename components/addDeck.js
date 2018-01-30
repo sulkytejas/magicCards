@@ -11,12 +11,15 @@ export default class AddDeck extends React.Component{
   onPressAddDeck =()=>{
     const {title} = this.state
     const key = title;
+    // const count = this.props.navigation.state.params.countNo
      const deck = {
       title: title,
       questions: []
     };
     submitDeck({key,deck})
-    this.props.navigation.navigate('Home', {deck: title})
+    //this.props.navigation.goBack()
+    this.props.navigation.navigate('SingleDeck',{'entryID':title, 'countNo':"0"})
+    // this.props.navigation.navigate('SingleDeck', {entryTitle:key})
   }
 
   render(){
